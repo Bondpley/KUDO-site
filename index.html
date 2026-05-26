@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>КУДО | Дайдо Дзюку — бойове мистецтво в Україні</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #f8f6f3;
+            --bg-header: rgba(26, 25, 23, 0.95);
+            --bg-card: #ffffff;
+            --bg-secondary: #f0ede8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --text-muted: #7a7a7a;
+            --border-color: #e8e4df;
+            --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.78) 100%);
+            --hero-text: #f0ebe2;
+            --hero-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+            --quote-bg: rgba(0,0,0,0.55);
+            --quote-border: rgba(185,76,60,0.5);
+            --badge-bg: #b84c3c;
+            --badge-text: #ffffff;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --card-hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --icon-color: #b84c3c;
+        }
+
+        body.dark {
+            --bg-body: #0c0b0a;
+            --bg-header: rgba(26, 25, 23, 0.95);
+            --bg-card: #161412;
+            --bg-secondary: #1c1916;
+            --text-primary: #e8e4df;
+            --text-secondary: #c4b8aa;
+            --text-muted: #9a8e7e;
+            --border-color: #2e2a26;
+            --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.78) 100%);
+            --hero-text: #f0ebe2;
+            --hero-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+            --quote-bg: rgba(0,0,0,0.55);
+            --quote-border: rgba(185,76,60,0.5);
+            --badge-bg: #b84c3c;
+            --badge-text: #ffffff;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --card-hover-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
+            --icon-color: #d96c5a;
+        }
+
+        body {
+            background: var(--bg-body);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.2s ease;
+        }
+
+        h1, h2, h3, h4, .oswald {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .site-header {
+            background: var(--bg-header);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid #b84c3c;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+        }
+
+        .logo-mark {
+            width: 52px;
+            height: 52px;
+            background: #1f1c19;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #b84c3c;
+            overflow: hidden;
+        }
+
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #e8e4df;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            color: #d96c5a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #d4cdc2;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #b84c3c;
+        }
+
+        .burger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #d4cdc2;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-header);
+            padding: 20px 24px;
+            gap: 18px;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .mobile-nav a {
+            color: #d4cdc2;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+        }
+
+        .mobile-nav a.active {
+            color: #b84c3c;
+        }
+
+        .hero {
+            background: var(--hero-overlay), url('https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/648837171_25988226067498969_2205181927168922373_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5d90crfcRZ8Q7kNvwGJ2QqZ&_nc_oc=AdpDjLKMmZ0Gizzk8JHIl8zQtizXTdppeBNrTUSaU3mtKAdW88lYW0qoObmLqzJgbdc&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=xTCo5FKvo7xisLqIb6YTgQ&_nc_ss=7b289&oh=00_Af4qvetXq2uHw8VGhz3bsuUt4bbj9EePnPk5t2hytypRXg&oe=6A1A1651');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            color: var(--hero-text);
+            padding: 100px 0;
+            margin-bottom: 48px;
+        }
+
+        .hero-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: var(--hero-shadow);
+        }
+
+        .hero-text h2 i {
+            color: #b84c3c;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            color: #d4cdc2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-badge i {
+            margin-right: 8px;
+        }
+
+        .hero-quote {
+            flex: 0 0 300px;
+            background: var(--quote-bg);
+            backdrop-filter: blur(8px);
+            padding: 28px;
+            border-radius: 20px;
+            border: 1px solid var(--quote-border);
+        }
+
+        .hero-quote i {
+            font-size: 28px;
+            color: #b84c3c;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .hero-quote p {
+            font-style: italic;
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-left: 5px solid #b84c3c;
+            padding-left: 22px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .section-title i {
+            color: #b84c3c;
+            font-size: 28px;
+        }
+
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-bottom: 64px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 28px 34px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.25s ease;
+        }
+
+        .news-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: #b84c3c;
+        }
+
+        .news-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .albums-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            margin: 32px 0 56px;
+        }
+
+        .album-section {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .album-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #b84c3c;
+            display: inline-block;
+        }
+
+        .album-desc {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: #b84c3c;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 12px;
+            font-size: 12px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .clubs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 32px 0 56px;
+        }
+
+        .club-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 22px 28px;
+            border-left: 5px solid #b84c3c;
+            transition: 0.2s;
+            border: 1px solid var(--border-color);
+            border-left-width: 5px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .club-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .club-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .club-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .history-block, .about-block, .competition-block, .attestation-block {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 32px 36px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .history-block p, .about-block p, .competition-block p, .attestation-block p {
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        .competition-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        .competition-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .competition-list li i {
+            color: #b84c3c;
+            width: 24px;
+        }
+
+        .site-footer {
+            background: var(--bg-header);
+            color: var(--text-muted);
+            padding: 48px 0 32px;
+            margin-top: 64px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer-col p {
+            font-size: 13px;
+        }
+
+        .page {
+            display: none;
+            animation: fade 0.3s ease;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            background: rgba(0,0,0,0.6);
+            padding: 12px;
+            width: fit-content;
+            margin: 0 auto;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 880px) {
+            .hero-text h2 { font-size: 42px; }
+            .nav { gap: 16px; }
+            .nav a { font-size: 11px; }
+        }
+
+        @media (max-width: 780px) {
+            .container { padding: 0 20px; }
+            .nav { display: none; }
+            .burger-btn { display: block; }
+            .hero-text h2 { font-size: 32px; }
+            .hero-grid { flex-direction: column; text-align: center; }
+            .hero-quote { flex: auto; width: 100%; }
+            .section-title { font-size: 24px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .club-details { flex-direction: column; gap: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 60px 0; }
+            .hero-text h2 { font-size: 26px; }
+            .logo-mark { width: 42px; height: 42px; }
+            .logo-text h1 { font-size: 20px; }
+            .news-card { padding: 18px 20px; }
+            .news-card h3 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo-area" id="logoHome">
+            <div class="logo-mark">
+                <img src="https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/284078747_105991725462674_8375816585147009730_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=2FbM7YakF1EQ7kNvwHi7vfi&_nc_oc=Adp5bahXv0v0s_wv037HNCNjCNSsw4u61UqiKL6Ys4IfbbxFAWGzhzQ6wMVhWNWrBLM&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=xqUWXIzwLJCf-gI4JEeQ1Q&_nc_ss=7b289&oh=00_Af5ATwN68mQA6Mc5pW8ozaIzbp1J-EX0R95jrnSXdKYvww&oe=6A1A0DE1" alt="KUDO logo">
+            </div>
+            <div class="logo-text">
+                <h1>KUDO</h1>
+                <p>Дайдо Дзюку · Україна</p>
+            </div>
+        </div>
+        <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav">
+            <a href="#" data-page="home">Головна</a>
+            <a href="#" data-page="history">Історія</a>
+            <a href="#" data-page="about">Про нас</a>
+            <a href="#" data-page="gallery">Галерея</a>
+            <a href="#" data-page="clubs">Клуби</a>
+            <a href="#" data-page="competitions">Змагання</a>
+            <a href="#" data-page="attestation">Атестація</a>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#" data-page="home">Головна</a>
+        <a href="#" data-page="history">Історія</a>
+        <a href="#" data-page="about">Про нас</a>
+        <a href="#" data-page="gallery">Галерея</a>
+        <a href="#" data-page="clubs">Клуби</a>
+        <a href="#" data-page="competitions">Змагання</a>
+        <a href="#" data-page="attestation">Атестація</a>
+    </div>
+</header>
+
+<main>
+    <div id="pageHome" class="page active-page">
+        <div class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h2>КУДО<br>Шлях справжнього духу</h2>
+                    <p>Повноконтактне бойове мистецтво, створене Адзумою Такасі у 1981 році. Синтез карате, дзюдо та тайського боксу. Удари, кидки, больові — справжній бій із повагою до суперника.</p>
+                    <!-- <div class="hero-badge"><i class="fas fa-shield-alt"></i> Офіційна федерація в Україні</div> -->
+                </div>
+                <div class="hero-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>«Кудо — це не просто бій. Це філософія взаємоповаги, витривалості та постійного вдосконалення»</p>
+                    <p style="margin-top: 16px; font-size: 12px; font-weight: 600;">— Адзума Такасі</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="section-title"><span>Новини та життя Кудо в Україні</span></div>
+            <div id="newsContainer" class="news-grid"></div>
+        </div>
+    </div>
+
+    <div id="pageHistory" class="page">
+        <div class="container">
+            <div style="padding: 40px 0 20px;">
+                <div class="section-title"><i class="fas fa-landmark"></i> <span>Історія виникнення</span></div>
+                <div class="history-block">
+                    <p><strong>1981 рік, Японія.</strong> Майстер Адзума Такасі, учень засновника кіокушинкай Масутацу Оями, створив універсальну бойову систему, яка поєднує ударну техніку, кидки та партер. Так з'явився стиль <strong>«Дайдо Дзюку Кудо»</strong>.</p>
+                    <p>Головна особливість — захисний шолом із прозорим щитком, що дозволяє безпечно завдавати ударів у голову. Завдяки цьому Кудо стало одним із найбільш реалістичних єдиноборств.</p>
+                    <p>В Україні Кудо активно розвивається з 2000-х років, сьогодні діють десятки клубів, проводяться чемпіонати та семінари з участю міжнародних майстрів.</p>
+                </div>
+                <div class="history-block">
+                    <p><strong>Принципи Кудо:</strong> технічна різноманітність, повага до суперника, безпека та виховання справжнього духу воїна. Кожен, хто займається Кудо, розвиває не лише фізичну силу, а й характер.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageAbout" class="page">
+        <div class="container">
+            <div style="padding: 40px 0 20px;">
+                <div class="section-title"><i class="fas fa-users"></i> <span>Про Національну Федерацію Кудо України</span></div>
+                <div class="about-block">
+                    <p>Національна Федерація Кудо України (НФКУ) — офіційний представник Міжнародної федерації Кудо (KIF) в Україні. Федерація об'єднує клуби з усіх регіонів країни та активно розвиває це мужнє бойове мистецтво серед дорослих та дітей.</p>
+                    <p>Місія НФКУ — популяризація Кудо, виховання справжніх воїнів, що володіють не лише технікою, а й високими моральними якостями. Ми проводимо чемпіонати, семінари, атестації та навчальні табори.</p>
+                    <p>Приєднуйтесь до нашої спільноти, щоб стати частиною великої родини Кудо!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageGallery" class="page">
+        <div class="container">
+            <div style="padding: 40px 0 20px;">
+                <div class="section-title"><span>Фотогалерея</span></div>
+                <div id="albumsContainer" class="albums-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageClubs" class="page">
+        <div class="container">
+            <div style="padding: 40px 0 20px;">
+                <div class="section-title"><i class="fas fa-location-dot"></i> <span>Клуби Кудо в Україні</span></div>
+                <div id="clubsContainer" class="clubs-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageCompetitions" class="page">
+        <div class="container">
+            <div style="padding: 40px 0 20px;">
+                <div class="section-title"><i class="fas fa-trophy"></i> <span>Змагання та турніри</span></div>
+                <div class="competition-block">
+                    <p>Федерація Кудо України проводить регулярні змагання різного рівня:</p>
+                    <ul class="competition-list">
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Чемпіонат України з Кудо</strong> — квітень 2026, м. Львів</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Кубок України</strong> — червень 2026, м. Київ</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Відкритий чемпіонат Києва</strong> — вересень 2026</li>
+                        <li><i class="fas fa-globe"></i> <strong>Міжнародний турнір "KUDO CUP"</strong> — жовтень 2026</li>
+                    </ul>
+                    <p style="margin-top: 20px;">Запрошуємо спортсменів, тренерів та вболівальників долучатися до змагань! Актуальний календар подій публікується на сайті та в соціальних мережах федерації.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageAttestation" class="page">
+        <div class="container">
+            <div style="padding: 40px 0 20px;">
+                <div class="section-title"><i class="fas fa-certificate"></i> <span>Атестація на пояси</span></div>
+                <div class="attestation-block">
+                    <p>Система поясів Кудо (кю та дани) відображає рівень майстерності учня. Атестація проводиться під наглядом атестаційної комісії НФКУ.</p>
+                    <p><strong>Графік атестацій на 2026 рік:</strong></p>
+                    <ul class="competition-list">
+                        <li><i class="fas fa-circle"></i> Весняна атестація — травень 2026 (заявки до 15 квітня)</li>
+                        <li><i class="fas fa-circle"></i> Літня атестація — липень 2026 (табір)</li>
+                        <li><i class="fas fa-circle"></i> Осіння атестація — жовтень 2026</li>
+                    </ul>
+                    <p style="margin-top: 20px;">Вимоги до атестації: знання техніки ката, кіхон, куміте, а також теоретична частина (історія, термінологія, філософія Кудо). За додатковою інформацією звертайтесь до тренерів або представництва федерації.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-col">
+            <p>Національна Федерація Кудо України</p>
+            <p style="margin-top: 8px; font-size: 11px;">Справжнє бойове мистецтво</p>
+        </div>
+        <div class="footer-col">
+            <p>Розвиваємо чесний спорт та традиції</p>
+            <p style="font-size: 11px;">KUDO - шлях воїна</p>
+        </div>
+        <div class="footer-col">
+            <p>© 2026</p>
+            <p style="font-size: 11px;">про силу, повагу та Кудо</p>
+        </div>
+    </div>
+</footer>
+
+<div id="photoModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img id="modalImage" src="" alt="">
+    <div id="modalCaption" class="modal-caption"></div>
+</div>
+
+<script>
+    const newsData = [
+        { title: "Чемпіонат України з Кудо 2026 - вже дуже скоро!", date: "10–11 квітня 2026", excerpt: "Найсильніші бійці країни зійдуться, щоб визначити кращих із кращих! Це буде не просто турнір — вибух емоцій, сила духу, справжня боротьба до кінця." },
+    ];
+
+    const albumsData = [
+        {
+            id: 1,
+            title: "Кубок Європи з KUDO — Мальта, Пембрук",
+            description: "Збірна України виборола 1 командне місце, здобувши: 9 золотих, 7 срібних, 3 бронзові нагороди. Це результат наполегливої роботи спортсменів, тренерів і всієї української KUDO-родини.",
+            photos: [
+                { url: "https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/590082878_25109235412064710_6150422326360689578_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=lG96t4u4rN0Q7kNvwGV6wXR&_nc_oc=Adra_b9MLz2fGzWL3chmAMhoJSWnoZoXDvO4tukzMK5T4XVWv5OlEzS56dAIm5WyrwY&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=HtG6eF-PpgZw4x-jF38VOw&_nc_ss=7b289&oh=00_Af78iBEDzhwPZsRdnGBO3z-jmnzZmQGmL9MMUU1_nRVHZg&oe=6A1A71B6", caption: "Фото 1" },
+                { url: "https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/587119367_25109237632064488_3325477325805543564_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aqRRGmUaP6gQ7kNvwEWijbX&_nc_oc=Adq_M4HSmPM9JJGBByISXrdmd1IMsjtk887VydU1rmL8OZsnJxY26WRU99bdRSB4ke8&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=6PkWSDQRoqkVxk2gW6Ep_Q&_nc_ss=7b289&oh=00_Af7x5cAN6YccljwW8eO6LGK6XYhmLNys53Dr48BHOwm4_Q&oe=6A1A5DA6", caption: "Фото 2" },
+                { url: "https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/587214646_25109235682064683_8898303299040988524_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5W9fAEQxW7AQ7kNvwEm7RNw&_nc_oc=AdqueQ3sFXTBY0h5Rb-ZJvJp2t59x-cofvQyN7rYATpXOYmHglT-FV1hlpYDiYt3cwQ&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=SGUz8nN7h4EJmBimGL6Q5A&_nc_ss=7b289&oh=00_Af41WCjCyBZp2bhvdqZ2RInppMltLbeztlVlM07TaR5xKA&oe=6A1A6FD7", caption: "Фото 3" },
+                { url: "https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/588101585_25109237132064538_4871399097119690842_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-akAQYUORnIQ7kNvwFqxtwI&_nc_oc=AdobvAO50w6QoWWB5_OaIQG28Jn3VGYK_qr1pWENuzmZAaJAYYiHx9Ll9DcPHbv8khs&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=tBVshBbNrqd6P1otQ0fMUw&_nc_ss=7b289&oh=00_Af5pjhN6KSw7hsQsKyDQ6l3EUgT8dl00BL7b_A4Z5nVRvg&oe=6A1A711B", caption: "Фото 4" },
+                { url: "https://scontent.fktw5-1.fna.fbcdn.net/v/t39.30808-6/588544537_25109235932064658_3587083231740287279_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aoEyKlzGp0oQ7kNvwG_HfOp&_nc_oc=Ados1Udg1aZNxvmxMjArQtoLbNXI_ODyb_oN9zApoGpn-xx_U7EV5c7ZcCW1HFKdryI&_nc_zt=23&_nc_ht=scontent.fktw5-1.fna&_nc_gid=HEDCBVCnRrSsrjMx_874nA&_nc_ss=7b289&oh=00_Af4eBIssOnEt5DLi7D8HTLY_be8e17ufj7ah57wcjwBPXg&oe=6A1A6CFC", caption: "Фото 5" },
+            ]
+        }
+    ];
+
+    const clubsData = [
+        { name: "ГО СК «КУДО СТАФФ»", city: "Київ", address: "вулиця Вишгородська, 45", coach: "Антон Артюх", contacts: "+380 981 120 663" },];
+
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m] || m));
+    }
+
+    function renderNews() {
+        const container = document.getElementById('newsContainer');
+        if(!container) return;
+        container.innerHTML = newsData.map(n => `
+            <div class="news-card">
+                <h3>${escapeHtml(n.title)}</h3>
+                <div class="news-meta"><span><i class="far fa-calendar-alt"></i> ${escapeHtml(n.date)}</span><span><i class="fas fa-tag"></i> KUDO · Федерація</span></div>
+                <div>${escapeHtml(n.excerpt)}</div>
+            </div>
+        `).join('');
+    }
+
+    function renderGallery() {
+        const container = document.getElementById('albumsContainer');
+        if(!container) return;
+        container.innerHTML = albumsData.map(album => `
+            <div class="album-section">
+                <h3 class="album-title">${escapeHtml(album.title)}</h3>
+                <div class="album-desc">${escapeHtml(album.description)}</div>
+                <div class="gallery-grid">
+                    ${album.photos.map(photo => `
+                        <div class="gallery-item" onclick="openModal('${escapeHtml(photo.url)}', '${escapeHtml(photo.caption)}')">
+                            <img src="${escapeHtml(photo.url)}" onerror="this.src='https://placehold.co/600x450/2a2622/b84c3c?text=KUDO'">
+                            <div class="gallery-caption">${escapeHtml(photo.caption)}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderClubs() {
+        const container = document.getElementById('clubsContainer');
+        if(!container) return;
+        container.innerHTML = clubsData.map(c => `
+            <div class="club-card">
+                <h4> ${escapeHtml(c.name)}</h4>
+                <div class="club-details">
+                    <span><i class="fas fa-map-pin"></i> ${escapeHtml(c.city)}</span>
+                    <span><i class="fas fa-location-dot"></i> ${escapeHtml(c.address)}</span>
+                    <span><i class="fas fa-chalkboard-user"></i> Тренер: ${escapeHtml(c.coach)}</span>
+                    <span><i class="fas fa-phone-alt"></i> ${escapeHtml(c.contacts)}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openModal(url, caption) {
+        const modal = document.getElementById('photoModal');
+        document.getElementById('modalImage').src = url;
+        document.getElementById('modalCaption').textContent = caption;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('photoModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function initNavigation() {
+        const pages = {
+            home: document.getElementById('pageHome'),
+            history: document.getElementById('pageHistory'),
+            about: document.getElementById('pageAbout'),
+            gallery: document.getElementById('pageGallery'),
+            clubs: document.getElementById('pageClubs'),
+            competitions: document.getElementById('pageCompetitions'),
+            attestation: document.getElementById('pageAttestation')
+        };
+        
+        const allLinks = document.querySelectorAll('.nav a, .mobile-nav a');
+        const logo = document.getElementById('logoHome');
+        const burger = document.getElementById('burgerBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        function closeMobile() { if(mobileNav) mobileNav.style.display = 'none'; }
+        function toggleMobile() { mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex'; }
+        if(burger) burger.onclick = (e) => { e.stopPropagation(); toggleMobile(); };
+
+        function showPage(id) {
+            Object.values(pages).forEach(p => p.classList.remove('active-page'));
+            if(pages[id]) pages[id].classList.add('active-page');
+            allLinks.forEach(link => {
+                if(link.getAttribute('data-page') === id) link.classList.add('active');
+                else link.classList.remove('active');
+            });
+            if(id === 'gallery') renderGallery();
+            if(id === 'clubs') renderClubs();
+            window.history.pushState({}, '', '#' + id);
+            closeMobile();
+        }
+
+        allLinks.forEach(link => {
+            link.onclick = (e) => {
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                if(page && pages[page]) showPage(page);
+            };
+        });
+        if(logo) logo.onclick = () => showPage('home');
+
+        let hash = location.hash.substring(1);
+        if(hash && pages[hash]) showPage(hash);
+        else showPage('home');
+
+        window.onpopstate = () => {
+            let h = location.hash.substring(1);
+            if(h && pages[h]) showPage(h);
+            else showPage('home');
+        };
+        window.onclick = (e) => { if(mobileNav && mobileNav.style.display === 'flex' && !burger.contains(e.target) && !mobileNav.contains(e.target)) closeMobile(); };
+
+        const modal = document.getElementById('photoModal');
+        document.querySelector('.modal-close').onclick = closeModal;
+        modal.onclick = (e) => { if(e.target === modal) closeModal(); };
+        document.onkeydown = (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) closeModal(); };
+    }
+
+    renderNews();
+    renderGallery();
+    renderClubs();
+    initNavigation();
+    window.openModal = openModal;
+</script>
+</body>
+</html>
