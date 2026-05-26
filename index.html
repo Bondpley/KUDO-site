@@ -480,6 +480,35 @@
             font-size: 13px;
         }
 
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(184, 76, 60, 0.45);
+            border-radius: 50%;
+            color: #d4cdc2;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-social a:hover,
+        .footer-social a:focus-visible {
+            background: #b84c3c;
+            border-color: #b84c3c;
+            color: #ffffff;
+            transform: translateY(-2px);
+            outline: none;
+        }
+
         .page {
             display: none;
             animation: fade 0.3s ease;
@@ -726,6 +755,20 @@
         <div class="footer-col">
             <p>© 2026</p>
             <p style="font-size: 11px;">про силу, повагу та Кудо</p>
+        </div>
+        <div class="footer-col footer-social" aria-label="Social links">
+            <!-- <a href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <i class="fab fa-telegram-plane" aria-hidden="true"></i>
+            </a> -->
+            <a href="https://www.instagram.com/artiukh_anton/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <!-- <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <i class="fab fa-youtube" aria-hidden="true"></i>
+            </a> -->
+            <a href="https://www.facebook.com/Kudo.ua.official/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
 </footer>
